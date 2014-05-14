@@ -1,0 +1,46 @@
+
+// Gutter width
+$gutter-width: 20px;
+
+// Default total columns
+$col-total: 12;
+
+// Resuable border-box fix
+@mixin border-box-fix() {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+// A wrapper for columns
+@mixin col-base() {
+  display: inline-block; // why not block?
+  margin-right: -.25em;
+  min-height: 1px;
+  padding-left: $gutter-width;
+  vertical-align: top; 
+    @include border-box-fix();
+}
+
+// A wrapper for columns
+@mixin col-container() {
+  list-style: none;
+  margin-left: -$gutter-width; 
+  width: auto;
+    @include border-box-fix();
+}
+
+@mixin col($col, $total : $col-total) {
+  @include col-base();
+  width: percentage($col/$total);
+}
+
+@mixin push-col($col, $total : $col-total) {
+  @include col-base();
+  margin-left: percentage($col/$total);
+}
+
+@mixin pull-col($col, $total : $col-total) {
+  @include col-base();
+  margin-left: percentage(-$col/$total);
+}
