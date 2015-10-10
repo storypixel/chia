@@ -1,4 +1,3 @@
-
 // Gutter width
 $gutter-width: 20px;
 
@@ -14,20 +13,20 @@ $col-total: 12;
 
 // A wrapper for columns
 @mixin col-base() {
-  display: inline-block; // why not block?
-  margin-right: -.25em;
+  @include border-box-fix();
+  display: inline-block;
+  margin-right: -1 * $gutter-width * .2;
   min-height: 1px;
   padding-left: $gutter-width;
-  vertical-align: top; 
-    @include border-box-fix();
+  vertical-align: top;
 }
 
 // A wrapper for columns
 @mixin col-container() {
+  @include border-box-fix();
   list-style: none;
-  margin-left: -$gutter-width; 
+  margin-left: -$gutter-width;
   width: auto;
-    @include border-box-fix();
 }
 
 @mixin col($col, $total : $col-total) {
