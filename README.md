@@ -1,6 +1,12 @@
+<p align="center">
+  <img src="logo/dribbble-chia.png" alt="Chia" width="400">
+</p>
+
 # Chia
 
 A plain CSS framework. No Tailwind, no build step, no JavaScript dependencies.
+
+**[Live Demo &rarr;](https://storypixel.github.io/chia/)**
 
 Real selectors. Low specificity. `data-slot` attributes for component styling. CSS custom properties for theming.
 

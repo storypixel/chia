@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chia — Plain CSS Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a1a1a;
+      --text: #ffffff;
+      --text-secondary: #888888;
+      --border: rgba(255,255,255,0.1);
+      --accent: #2dd4a0;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* ── Layout ──────────────────────────────── */
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 1.5rem; }
+    }
+
+    /* ── Nav ─────────────────────────────────── */
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--bg);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      height: 28px;
+      border-radius: 4px;
+    }
+
+    .nav-title {
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-version {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.5rem; }
+      .nav-links { display: none; }
+    }
+
+    /* ── Hero ────────────────────────────────── */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 6rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 700px;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin-top: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .hero-actions code {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-family: 'SF Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+
+    /* ── Sections ────────────────────────────── */
+
+    section {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── Module Grid ─────────────────────────── */
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .module-card {
+      background: var(--bg);
+      padding: 1.5rem;
+    }
+
+    .module-card h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .module-card p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .module-card code {
+      color: var(--accent);
+      font-family: 'SF Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    /* ── Component Demos ─────────────────────── */
+
+    .demo-row {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .demo-row:last-child { border-bottom: none; }
+
+    .demo-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .demo-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* ── Live component styles (light theme for demos) ── */
+
+    .demo-surface {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 2rem;
+      color: #121317;
+    }
+
+    .demo-surface .demo-label {
+      color: #6E7681;
+    }
+
+    /* Buttons */
+    .d-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .d-btn-primary {
+      background: #121317;
+      color: #fff;
+    }
+    .d-btn-primary:hover { background: #2F3034; }
+
+    .d-btn-secondary {
+      background: #F0F1F5;
+      color: #121317;
+    }
+    .d-btn-secondary:hover { background: #E6EAF0; }
+
+    .d-btn-outline {
+      background: transparent;
+      border-color: #E1E6EC;
+      color: #121317;
+    }
+    .d-btn-outline:hover { background: #F8F9FC; }
+
+    .d-btn-ghost {
+      background: transparent;
+      color: #6E7681;
+    }
+    .d-btn-ghost:hover { background: #F0F1F5; color: #121317; }
+
+    .d-btn-destructive {
+      background: rgba(220,38,38,0.1);
+      color: #DC2626;
+    }
+    .d-btn-destructive:hover { background: rgba(220,38,38,0.2); }
+
+    .d-btn-sm { height: 28px; padding: 0 10px; font-size: 13px; }
+
+    /* Badges */
+    .d-badge {
+      display: inline-flex;
+      align-items: center;
+      height: 20px;
+      padding: 0 8px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    .d-badge-default { background: #121317; color: #fff; }
+    .d-badge-secondary { background: #F0F1F5; color: #45474D; }
+    .d-badge-outline { background: transparent; border-color: #E1E6EC; color: #6E7681; }
+    .d-badge-destructive { background: rgba(220,38,38,0.1); color: #DC2626; }
+
+    /* Inputs */
+    .d-input {
+      height: 40px;
+      width: 280px;
+      border: 1px solid #E1E6EC;
+      border-radius: 8px;
+      padding: 0 12px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .d-input:focus { border-color: #121317; }
+    .d-input::placeholder { color: #B2BBC5; }
+
+    /* Cards */
+    .d-card {
+      background: #fff;
+      border: 1px solid rgba(225,230,236,0.4);
+      border-radius: 24px;
+      padding: 20px 16px;
+      box-shadow: 0 2px 12px -4px rgba(0,0,0,0.06);
+      max-width: 320px;
+    }
+
+    .d-card-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .d-card-desc {
+      font-size: 14px;
+      color: #6E7681;
+    }
+
+    /* Avatar */
+    .d-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 9999px;
+      background: #E6EAF0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #6E7681;
+      flex-shrink: 0;
+    }
+
+    .d-avatar-lg { width: 48px; height: 48px; font-size: 16px; }
+
+    /* Skeleton */
+    .d-skeleton {
+      background: #E6EAF0;
+      border-radius: 8px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* ── Code Block ──────────────────────────── */
+
+    .code-block {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      color: var(--text-secondary);
+    }
+
+    .code-block .hl { color: var(--accent); }
+    .code-block .cm { color: #555; }
+
+    /* ── Principles ──────────────────────────── */
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .principle h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .principle p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* ── Footer ──────────────────────────────── */
+
+    footer {
+      padding: 4rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <img src="logo.png" alt="Chia" class="nav-logo">
+      <span class="nav-title">Chia</span>
+      <span class="nav-version">v2</span>
+    </div>
+    <div class="nav-links">
+      <a href="#modules">Modules</a>
+      <a href="#components">Components</a>
+      <a href="#philosophy">Philosophy</a>
+      <a href="https://github.com/storypixel/chia">GitHub &nearr;</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="container">
+    <div class="hero">
+      <span class="hero-badge">Plain CSS Framework</span>
+      <h1>Real CSS.<br>No build step.<br>No dependencies.</h1>
+      <p>A component library that uses attribute selectors and CSS custom properties. One file. Readable styles. Works with any framework or none at all.</p>
+      <div class="hero-actions">
+        <code>@import 'chia/chia.css'</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modules -->
+  <section id="modules">
+    <div class="container">
+      <div class="section-label">Modules</div>
+      <h2 class="section-title">Six files. Import what you need.</h2>
+      <p class="section-desc">Each module is independent. Use them together or pull in only what you need.</p>
+
+      <div class="module-grid">
+        <div class="module-card">
+          <h3>tokens.css</h3>
+          <p>Design tokens for typography, radius, color, spacing, and transitions. Uses <code>Open Props</code> for utility primitives.</p>
+        </div>
+        <div class="module-card">
+          <h3>reset.css</h3>
+          <p>Modern CSS reset based on Andy Bell's approach. Sensible defaults without design opinions.</p>
+        </div>
+        <div class="module-card">
+          <h3>components.css</h3>
+          <p>UI components styled via <code>[data-slot]</code> attribute selectors. Button, card, badge, input, avatar, and more.</p>
+        </div>
+        <div class="module-card">
+          <h3>utilities.css</h3>
+          <p>Minimal layout utilities. Flex, grid, gap, padding, margin, sizing. Just the essentials.</p>
+        </div>
+        <div class="module-card">
+          <h3>animations.css</h3>
+          <p>Keyframes for fade, slide, scale, collapse, ping, shimmer, and spin. Framework-agnostic.</p>
+        </div>
+        <div class="module-card">
+          <h3>prose.css</h3>
+          <p>Rich text typography via the <code>.prose</code> class. For editor output, markdown, and long-form content.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Components -->
+  <section id="components">
+    <div class="container">
+      <div class="section-label">Components</div>
+      <h2 class="section-title">Styled by attributes, not classes.</h2>
+      <p class="section-desc">Components use <code>data-slot</code> for identity and <code>data-variant</code> / <code>data-size</code> for variants. Flat specificity. Easy overrides.</p>
+
+      <div class="demo-surface">
+        <!-- Buttons -->
+        <div class="demo-row">
+          <div class="demo-label">Button</div>
+          <div class="demo-content">
+            <button class="d-btn d-btn-primary">Primary</button>
+            <button class="d-btn d-btn-secondary">Secondary</button>
+            <button class="d-btn d-btn-outline">Outline</button>
+            <button class="d-btn d-btn-ghost">Ghost</button>
+            <button class="d-btn d-btn-destructive">Destructive</button>
+            <button class="d-btn d-btn-primary d-btn-sm">Small</button>
+          </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="demo-row">
+          <div class="demo-label">Badge</div>
+          <div class="demo-content">
+            <span class="d-badge d-badge-default">Default</span>
+            <span class="d-badge d-badge-secondary">Secondary</span>
+            <span class="d-badge d-badge-outline">Outline</span>
+            <span class="d-badge d-badge-destructive">Destructive</span>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <div class="demo-row">
+          <div class="demo-label">Input</div>
+          <div class="demo-content">
+            <input class="d-input" type="text" placeholder="Enter something...">
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="demo-row">
+          <div class="demo-label">Card</div>
+          <div class="demo-content">
+            <div class="d-card">
+              <div class="d-card-title">Card Title</div>
+              <div class="d-card-desc">A simple card with rounded corners, subtle border, and soft shadow.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Avatar -->
+        <div class="demo-row">
+          <div class="demo-label">Avatar</div>
+          <div class="demo-content">
+            <div class="d-avatar">SW</div>
+            <div class="d-avatar d-avatar-lg">SW</div>
+          </div>
+        </div>
+
+        <!-- Skeleton -->
+        <div class="demo-row">
+          <div class="demo-label">Skeleton</div>
+          <div class="demo-content" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+            <div class="d-skeleton" style="width: 200px; height: 16px;"></div>
+            <div class="d-skeleton" style="width: 160px; height: 16px;"></div>
+            <div class="d-skeleton" style="width: 240px; height: 16px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage -->
+  <section id="usage">
+    <div class="container">
+      <div class="section-label">Usage</div>
+      <h2 class="section-title">HTML with data attributes.</h2>
+      <p class="section-desc">No class name soup. Components identify themselves with data-slot. Variants with data-variant.</p>
+
+      <div class="code-block"><span class="cm">&lt;!-- Button --&gt;</span>
+&lt;button <span class="hl">data-slot="button"</span> <span class="hl">data-variant="default"</span> <span class="hl">data-size="default"</span>&gt;
+  Click me
+&lt;/button&gt;
+
+<span class="cm">&lt;!-- Card --&gt;</span>
+&lt;div <span class="hl">data-slot="card"</span>&gt;
+  &lt;div <span class="hl">data-slot="card-header"</span>&gt;Title&lt;/div&gt;
+  &lt;div <span class="hl">data-slot="card-content"</span>&gt;Body&lt;/div&gt;
+&lt;/div&gt;
+
+<span class="cm">&lt;!-- Badge --&gt;</span>
+&lt;span <span class="hl">data-slot="badge"</span> <span class="hl">data-variant="secondary"</span>&gt;New&lt;/span&gt;
+
+<span class="cm">&lt;!-- Input --&gt;</span>
+&lt;input <span class="hl">data-slot="input"</span> placeholder="Search..." /&gt;
+
+<span class="cm">&lt;!-- Avatar --&gt;</span>
+&lt;div <span class="hl">data-slot="avatar"</span>&gt;
+  &lt;img <span class="hl">data-slot="avatar-image"</span> src="..." /&gt;
+  &lt;span <span class="hl">data-slot="avatar-fallback"</span>&gt;SW&lt;/span&gt;
+&lt;/div&gt;</div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section id="philosophy">
+    <div class="container">
+      <div class="section-label">Philosophy</div>
+      <h2 class="section-title">Constraints that make CSS work.</h2>
+
+      <div class="principles">
+        <div class="principle">
+          <h3>One selector per rule</h3>
+          <p>No compound selectors. No nesting. Every rule targets exactly one thing. Easy to find, easy to override.</p>
+        </div>
+        <div class="principle">
+          <h3>No !important</h3>
+          <p>If you need !important, your architecture is broken. Chia uses flat specificity so the cascade works for you.</p>
+        </div>
+        <div class="principle">
+          <h3>Attributes over classes</h3>
+          <p>data-slot identifies what something is. data-variant says how it looks. No BEM, no utility soup, no naming debates.</p>
+        </div>
+        <div class="principle">
+          <h3>Custom properties everywhere</h3>
+          <p>Every color, radius, size, and transition is a CSS variable. Theme by overriding tokens, not by forking components.</p>
+        </div>
+        <div class="principle">
+          <h3>No build step</h3>
+          <p>Import the CSS. That's it. No PostCSS, no Tailwind JIT, no config files. Works in a CDN link tag.</p>
+        </div>
+        <div class="principle">
+          <h3>Framework agnostic</h3>
+          <p>React, Vue, Svelte, plain HTML. Chia doesn't care. It styles elements, not components.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p><a href="https://github.com/storypixel/chia">Chia</a> by <a href="https://iamnotsam.com">Sam Wilson</a>. Plain CSS. That's it.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
