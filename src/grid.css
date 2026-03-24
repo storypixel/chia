@@ -1,0 +1,240 @@
+/* ═══════════════════════════════════════════════════════════
+   BASE FRAMEWORK — Grid System
+
+   Modern CSS Grid layout primitives. Uses subgrid, container
+   queries, and intrinsic sizing — no fixed column counts
+   unless you want them.
+
+   Usage:
+     <div data-grid>                       auto-fill responsive
+     <div data-grid="2">                   fixed 2 columns
+     <div data-grid="sidebar">             sidebar + content
+     <div data-grid="holy-grail">          header/sidebar/content/footer
+     <div data-grid data-gap="lg">         custom gap size
+     <div data-grid-item="span-2">         span 2 columns
+     <div data-grid-item="full">           span all columns
+   ═══════════════════════════════════════════════════════════ */
+
+
+/* ── Auto-responsive grid ───────────────────────────────── */
+/* Fills columns automatically. Default min 280px per column. */
+
+[data-grid] {
+  display: grid;
+  gap: var(--grid-gap, 1rem);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--grid-min, 280px), 1fr)
+  );
+}
+
+
+/* ── Fixed column counts ────────────────────────────────── */
+
+[data-grid="1"] { grid-template-columns: 1fr; }
+[data-grid="2"] { grid-template-columns: repeat(2, 1fr); }
+[data-grid="3"] { grid-template-columns: repeat(3, 1fr); }
+[data-grid="4"] { grid-template-columns: repeat(4, 1fr); }
+[data-grid="5"] { grid-template-columns: repeat(5, 1fr); }
+[data-grid="6"] { grid-template-columns: repeat(6, 1fr); }
+
+
+/* ── Named layouts ──────────────────────────────────────── */
+
+/* Sidebar: fixed sidebar + fluid content */
+[data-grid="sidebar"] {
+  grid-template-columns: var(--sidebar-width, 260px) 1fr;
+}
+
+/* Sidebar right */
+[data-grid="sidebar-right"] {
+  grid-template-columns: 1fr var(--sidebar-width, 260px);
+}
+
+/* Holy grail: full page layout */
+[data-grid="holy-grail"] {
+  grid-template-areas:
+    "header  header  header"
+    "nav     main    aside"
+    "footer  footer  footer";
+  grid-template-columns: var(--sidebar-width, 260px) 1fr var(--aside-width, 200px);
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+}
+
+/* Pancake stack: rows that size to content */
+[data-grid="stack"] {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+}
+
+/* Asymmetric editorial (magazine-style) */
+[data-grid="editorial"] {
+  grid-template-columns: var(--grid-col-1, 80px) var(--grid-col-2, 280px) 1fr var(--grid-col-4, 160px);
+}
+
+
+/* ── Gap sizes ──────────────────────────────────────────── */
+
+[data-gap="0"]  { --grid-gap: 0; }
+[data-gap="xs"] { --grid-gap: 0.25rem; }
+[data-gap="sm"] { --grid-gap: 0.5rem; }
+[data-gap="md"] { --grid-gap: 1rem; }
+[data-gap="lg"] { --grid-gap: 1.5rem; }
+[data-gap="xl"] { --grid-gap: 2rem; }
+[data-gap="2xl"] { --grid-gap: 3rem; }
+
+
+/* ── Grid items ─────────────────────────────────────────── */
+
+[data-grid-item="span-2"] { grid-column: span 2; }
+[data-grid-item="span-3"] { grid-column: span 3; }
+[data-grid-item="span-4"] { grid-column: span 4; }
+[data-grid-item="full"]   { grid-column: 1 / -1; }
+
+/* Named area placement (for holy-grail / custom templates) */
+[data-grid-area="header"]  { grid-area: header; }
+[data-grid-area="nav"]     { grid-area: nav; }
+[data-grid-area="main"]    { grid-area: main; }
+[data-grid-area="aside"]   { grid-area: aside; }
+[data-grid-area="footer"]  { grid-area: footer; }
+
+
+/* ── Subgrid ────────────────────────────────────────────── */
+/* Children inherit parent's column tracks.
+   Use on a grid item that is also a grid container. */
+
+[data-subgrid] {
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+[data-subgrid="rows"] {
+  display: grid;
+  grid-template-rows: subgrid;
+}
+
+[data-subgrid="both"] {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+}
+
+
+/* ── Container queries ──────────────────────────────────── */
+/* Name a container, then children can query its width. */
+
+[data-container] {
+  container-type: inline-size;
+}
+
+[data-container="named"] {
+  container-type: inline-size;
+  container-name: var(--container-name, content);
+}
+
+
+/* ── Responsive collapse ────────────────────────────────── */
+/* Fixed grids collapse to single column on small viewports. */
+
+@media (max-width: 640px) {
+  [data-grid="2"] { grid-template-columns: 1fr; }
+  [data-grid="3"] { grid-template-columns: 1fr; }
+  [data-grid="4"] { grid-template-columns: repeat(2, 1fr); }
+  [data-grid="5"] { grid-template-columns: repeat(2, 1fr); }
+  [data-grid="6"] { grid-template-columns: repeat(2, 1fr); }
+  [data-grid="sidebar"] { grid-template-columns: 1fr; }
+  [data-grid="sidebar-right"] { grid-template-columns: 1fr; }
+  [data-grid="editorial"] { grid-template-columns: 1fr; }
+  [data-grid="holy-grail"] {
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "aside"
+      "footer";
+    grid-template-columns: 1fr;
+  }
+  [data-grid-item="span-2"] { grid-column: span 1; }
+  [data-grid-item="span-3"] { grid-column: span 1; }
+  [data-grid-item="span-4"] { grid-column: span 1; }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  [data-grid="4"] { grid-template-columns: repeat(2, 1fr); }
+  [data-grid="5"] { grid-template-columns: repeat(3, 1fr); }
+  [data-grid="6"] { grid-template-columns: repeat(3, 1fr); }
+}
+
+
+/* ── Breakpoint-aware grid columns ──────────────────────── */
+/* Override column count at specific breakpoints.
+   Usage: <div data-grid="1" data-sm="2" data-md="3" data-lg="4"> */
+
+@media (min-width: 640px) {
+  [data-sm="1"] { grid-template-columns: 1fr; }
+  [data-sm="2"] { grid-template-columns: repeat(2, 1fr); }
+  [data-sm="3"] { grid-template-columns: repeat(3, 1fr); }
+  [data-sm="4"] { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 768px) {
+  [data-md="1"] { grid-template-columns: 1fr; }
+  [data-md="2"] { grid-template-columns: repeat(2, 1fr); }
+  [data-md="3"] { grid-template-columns: repeat(3, 1fr); }
+  [data-md="4"] { grid-template-columns: repeat(4, 1fr); }
+  [data-md="5"] { grid-template-columns: repeat(5, 1fr); }
+  [data-md="6"] { grid-template-columns: repeat(6, 1fr); }
+  [data-md="sidebar"] { grid-template-columns: var(--sidebar-width, 260px) 1fr; }
+}
+
+@media (min-width: 1024px) {
+  [data-lg="1"] { grid-template-columns: 1fr; }
+  [data-lg="2"] { grid-template-columns: repeat(2, 1fr); }
+  [data-lg="3"] { grid-template-columns: repeat(3, 1fr); }
+  [data-lg="4"] { grid-template-columns: repeat(4, 1fr); }
+  [data-lg="5"] { grid-template-columns: repeat(5, 1fr); }
+  [data-lg="6"] { grid-template-columns: repeat(6, 1fr); }
+  [data-lg="sidebar"] { grid-template-columns: var(--sidebar-width, 260px) 1fr; }
+  [data-lg="editorial"] { grid-template-columns: var(--grid-col-1, 80px) var(--grid-col-2, 280px) 1fr var(--grid-col-4, 160px); }
+}
+
+@media (min-width: 1280px) {
+  [data-xl="2"] { grid-template-columns: repeat(2, 1fr); }
+  [data-xl="3"] { grid-template-columns: repeat(3, 1fr); }
+  [data-xl="4"] { grid-template-columns: repeat(4, 1fr); }
+  [data-xl="5"] { grid-template-columns: repeat(5, 1fr); }
+  [data-xl="6"] { grid-template-columns: repeat(6, 1fr); }
+}
+
+
+/* ── Breakpoint-aware span ──────────────────────────────── */
+
+@media (min-width: 640px) {
+  [data-sm-span="2"] { grid-column: span 2; }
+  [data-sm-span="3"] { grid-column: span 3; }
+  [data-sm-span="full"] { grid-column: 1 / -1; }
+}
+
+@media (min-width: 768px) {
+  [data-md-span="2"] { grid-column: span 2; }
+  [data-md-span="3"] { grid-column: span 3; }
+  [data-md-span="full"] { grid-column: 1 / -1; }
+}
+
+@media (min-width: 1024px) {
+  [data-lg-span="2"] { grid-column: span 2; }
+  [data-lg-span="3"] { grid-column: span 3; }
+  [data-lg-span="full"] { grid-column: 1 / -1; }
+}
+
+
+/* ── Alignment utilities for grid items ─────────────────── */
+
+[data-place="center"]       { place-self: center; }
+[data-place="start"]        { place-self: start; }
+[data-place="end"]          { place-self: end; }
+[data-place="stretch"]      { place-self: stretch; }
+[data-place="center-start"] { align-self: center; justify-self: start; }
+[data-place="center-end"]   { align-self: center; justify-self: end; }

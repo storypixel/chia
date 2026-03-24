@@ -70,7 +70,7 @@
     }
 
     .nav-logo {
-      height: 84px;
+      height: 120px;
     }
 
     .nav-title {
@@ -451,7 +451,6 @@
   <nav>
     <div class="nav-left">
       <img src="logo.svg" alt="Chia" class="nav-logo">
-      <span class="nav-version">v2</span>
     </div>
     <div class="nav-links">
       <a href="#modules">Modules</a>
@@ -496,6 +495,10 @@
         <div class="module-card">
           <h3>utilities.css</h3>
           <p>Minimal layout utilities. Flex, grid, gap, padding, margin, sizing. Just the essentials.</p>
+        </div>
+        <div class="module-card">
+          <h3>grid.css</h3>
+          <p>CSS Grid system with <code>data-grid</code> attributes. Auto-fill, fixed columns, named layouts, subgrid, container queries, and responsive breakpoints via <code>data-sm</code> / <code>data-md</code> / <code>data-lg</code>.</p>
         </div>
         <div class="module-card">
           <h3>animations.css</h3>
@@ -589,8 +592,10 @@
       <h2 class="section-title">HTML with data attributes.</h2>
       <p class="section-desc">No class name soup. Components identify themselves with data-slot. Variants with data-variant.</p>
 
-      <div class="code-block"><span class="cm">&lt;!-- Button --&gt;</span>
-&lt;button <span class="hl">data-slot="button"</span> <span class="hl">data-variant="default"</span> <span class="hl">data-size="default"</span>&gt;
+      <pre class="code-block"><code><span class="cm">&lt;!-- Button --&gt;</span>
+&lt;button <span class="hl">data-slot="button"</span>
+        <span class="hl">data-variant="default"</span>
+        <span class="hl">data-size="default"</span>&gt;
   Click me
 &lt;/button&gt;
 
@@ -601,16 +606,28 @@
 &lt;/div&gt;
 
 <span class="cm">&lt;!-- Badge --&gt;</span>
-&lt;span <span class="hl">data-slot="badge"</span> <span class="hl">data-variant="secondary"</span>&gt;New&lt;/span&gt;
+&lt;span <span class="hl">data-slot="badge"</span>
+      <span class="hl">data-variant="secondary"</span>&gt;New&lt;/span&gt;
 
 <span class="cm">&lt;!-- Input --&gt;</span>
 &lt;input <span class="hl">data-slot="input"</span> placeholder="Search..." /&gt;
 
-<span class="cm">&lt;!-- Avatar --&gt;</span>
-&lt;div <span class="hl">data-slot="avatar"</span>&gt;
-  &lt;img <span class="hl">data-slot="avatar-image"</span> src="..." /&gt;
-  &lt;span <span class="hl">data-slot="avatar-fallback"</span>&gt;SW&lt;/span&gt;
-&lt;/div&gt;</div>
+<span class="cm">&lt;!-- Grid --&gt;</span>
+&lt;div <span class="hl">data-grid</span>&gt;              <span class="cm">&lt;!-- auto-fill responsive --&gt;</span>
+  &lt;div&gt;Card 1&lt;/div&gt;
+  &lt;div&gt;Card 2&lt;/div&gt;
+  &lt;div&gt;Card 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div <span class="hl">data-grid="sidebar"</span>&gt;     <span class="cm">&lt;!-- sidebar + content --&gt;</span>
+  &lt;nav&gt;...&lt;/nav&gt;
+  &lt;main&gt;...&lt;/main&gt;
+&lt;/div&gt;
+
+&lt;div <span class="hl">data-grid="3"</span> <span class="hl">data-gap="lg"</span>&gt;  <span class="cm">&lt;!-- fixed 3-col --&gt;</span>
+  &lt;div&gt;...&lt;/div&gt;
+  &lt;div <span class="hl">data-grid-item="span-2"</span>&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
     </div>
   </section>
 

@@ -36,6 +36,7 @@ Or import modules individually:
 | `src/animations.css` | Keyframes for fade, slide, scale, collapse, ping, shimmer, spin |
 | `src/prose.css` | Rich text typography via `.prose` class |
 | `src/utilities.css` | Minimal layout utilities — flex, grid, gap, padding, margin, sizing |
+| `src/grid.css` | CSS Grid system — auto-fill, fixed columns, named layouts (sidebar, holy-grail, editorial), subgrid, container queries, responsive breakpoints |
 | `src/components.css` | UI components via `[data-slot]` selectors — button, badge, input, card, avatar, tabs, dialog, dropdown, etc. |
 
 ## Component Architecture
