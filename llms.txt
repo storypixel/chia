@@ -1,0 +1,226 @@
+# Chia CSS Framework
+
+> A plain CSS component library using data-slot attribute selectors and CSS custom properties. No build step, no JavaScript dependencies, no Tailwind.
+
+## Overview
+
+Chia styles components via `data-slot` attributes, with variants via `data-variant` and sizes via `data-size`. Specificity is flat — every rule is a single attribute selector. Theming uses CSS custom properties.
+
+## Import
+
+```css
+@import 'chia/chia.css';
+```
+
+Or individual modules:
+```css
+@import 'chia/src/tokens.css';
+@import 'chia/src/reset.css';
+@import 'chia/src/grid.css';
+@import 'chia/src/components.css';
+@import 'chia/src/utilities.css';
+@import 'chia/src/animations.css';
+@import 'chia/src/prose.css';
+```
+
+## Components
+
+### Button
+```html
+<button data-slot="button" data-variant="default" data-size="default">Label</button>
+```
+Variants: `default`, `outline`, `secondary`, `ghost`, `destructive`, `link`
+Sizes: `xs`, `sm`, `default`, `lg`, `icon`, `icon-xs`, `icon-sm`, `icon-lg`
+
+### Badge
+```html
+<span data-slot="badge" data-variant="secondary">Label</span>
+```
+Variants: `default`, `secondary`, `outline`, `destructive`, `ghost`, `link`
+
+### Input
+```html
+<input data-slot="input" placeholder="..." />
+```
+
+### Textarea
+```html
+<textarea data-slot="textarea" placeholder="..."></textarea>
+```
+
+### Floating Input
+```html
+<div data-slot="floating-field">
+  <input data-slot="floating-input" id="name" placeholder=" " />
+  <label data-slot="floating-label" for="name">Name</label>
+</div>
+```
+
+### Card
+```html
+<div data-slot="card">
+  <div data-slot="card-header">
+    <div data-slot="card-title">Title</div>
+    <div data-slot="card-description">Description</div>
+  </div>
+  <div data-slot="card-content">Body</div>
+  <div data-slot="card-footer">Footer</div>
+</div>
+```
+Card sizes: `data-size="sm"` for compact variant.
+
+### Avatar
+```html
+<div data-slot="avatar">
+  <img data-slot="avatar-image" src="..." alt="..." />
+  <span data-slot="avatar-fallback">SW</span>
+</div>
+```
+Sizes: `data-size="sm"` (24px), default (32px), `data-size="lg"` (40px)
+
+Avatar group:
+```html
+<div data-slot="avatar-group">
+  <div data-slot="avatar">...</div>
+  <div data-slot="avatar">...</div>
+  <div data-slot="avatar-group-count">+3</div>
+</div>
+```
+
+### Checkbox
+```html
+<button data-slot="checkbox" role="checkbox" aria-checked="false">
+  <span data-slot="checkbox-indicator"><svg>...</svg></span>
+</button>
+```
+When checked: add `data-checked` attribute.
+
+### Toggle
+```html
+<button data-slot="toggle" data-size="default" aria-pressed="false">Label</button>
+```
+Variants: default, `data-variant="outline"`
+Sizes: `sm`, `default`, `lg`
+
+### Label
+```html
+<label data-slot="label">Field name</label>
+```
+
+### Description
+```html
+<p data-slot="description">Helper text</p>
+```
+
+### Skeleton
+```html
+<div data-slot="skeleton" style="width: 200px; height: 16px;"></div>
+```
+
+## Grid System
+
+### Auto-responsive (fills available space, min 280px per column)
+```html
+<div data-grid>
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+```
+
+### Fixed columns
+```html
+<div data-grid="3">...</div>
+```
+Values: `1`, `2`, `3`, `4`, `5`, `6`
+
+### Named layouts
+```html
+<div data-grid="sidebar">...</div>
+```
+Values: `sidebar`, `sidebar-right`, `holy-grail`, `stack`, `editorial`
+
+### Gap sizes
+```html
+<div data-grid="3" data-gap="lg">...</div>
+```
+Values: `0`, `xs`, `sm`, `md` (default), `lg`, `xl`, `2xl`
+
+### Responsive breakpoints
+Override columns at specific breakpoints:
+```html
+<div data-grid="1" data-sm="2" data-md="3" data-lg="4">...</div>
+```
+Breakpoints: `data-sm` (640px+), `data-md` (768px+), `data-lg` (1024px+), `data-xl` (1280px+)
+
+### Grid item spanning
+```html
+<div data-grid-item="span-2">Spans 2 columns</div>
+<div data-grid-item="full">Spans all columns</div>
+```
+Responsive spans: `data-sm-span="2"`, `data-md-span="full"`, `data-lg-span="3"`
+
+### Subgrid
+```html
+<div data-subgrid>Inherits parent column tracks</div>
+<div data-subgrid="rows">Inherits row tracks</div>
+<div data-subgrid="both">Inherits both</div>
+```
+
+### Container queries
+```html
+<div data-container>Children can use @container queries</div>
+```
+
+### Named area placement (for holy-grail layout)
+```html
+<div data-grid="holy-grail">
+  <header data-grid-area="header">...</header>
+  <nav data-grid-area="nav">...</nav>
+  <main data-grid-area="main">...</main>
+  <aside data-grid-area="aside">...</aside>
+  <footer data-grid-area="footer">...</footer>
+</div>
+```
+
+### Placement
+```html
+<div data-place="center">Centered in cell</div>
+```
+Values: `center`, `start`, `end`, `stretch`, `center-start`, `center-end`
+
+## Design Tokens
+
+All values are CSS custom properties. Override in `:root` or a `@layer theme` block.
+
+### Typography
+`--text-xs` (0.75rem), `--text-sm` (0.875rem), `--text-base` (1rem), `--text-lg` (1.125rem), `--text-xl` (1.25rem), `--text-2xl` (1.5rem), `--text-3xl` (1.875rem)
+
+### Font weights
+`--font-normal` (400), `--font-medium` (500), `--font-semibold` (600), `--font-bold` (700)
+
+### Radius
+`--radius-xs` (4px), `--radius-sm` (6px), `--radius-md` (8px), `--radius-lg` (12px), `--radius-xl` (16px), `--radius-2xl` (24px), `--radius-pill` (9999px)
+
+### Semantic colors
+`--background`, `--foreground`, `--card`, `--card-foreground`, `--popover`, `--popover-foreground`, `--primary`, `--primary-foreground`, `--secondary`, `--secondary-foreground`, `--muted`, `--muted-foreground`, `--accent`, `--accent-foreground`, `--destructive`, `--destructive-foreground`, `--border`, `--input`, `--ring`
+
+### Transitions
+`--duration-fast` (100ms), `--duration-normal` (150ms), `--duration-slow` (300ms)
+
+## Utilities
+
+Chia includes minimal layout utilities as plain CSS classes: `.flex`, `.grid`, `.gap-4`, `.p-4`, `.mt-2`, `.text-sm`, `.font-medium`, `.rounded-lg`, `.border`, `.sr-only`, `.truncate`, etc. See `src/utilities.css` for the full list.
+
+## Prose
+
+Apply `.prose` class to a container for rich text typography (headings, paragraphs, lists, blockquotes, tables, code).
+
+## Animations
+
+Available keyframes: `fade-in`, `fade-out`, `slide-in-from-top`, `slide-in-from-bottom`, `slide-in-from-left`, `slide-in-from-right`, `scale-in`, `scale-out`, `collapsible-down`, `collapsible-up`, `ping`, `shimmer`, `spin`.
+
+## Source
+
+- Repository: https://github.com/storypixel/chia
+- Demo: https://iamnotsam.com/chia/

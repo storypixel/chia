@@ -6,6 +6,7 @@
   <title>Chia — Plain CSS Framework</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/grid.css">
   <style>
     :root {
       --bg: #1a1a1a;
@@ -455,6 +456,7 @@
     <div class="nav-links">
       <a href="#modules">Modules</a>
       <a href="#components">Components</a>
+      <a href="#grid">Grid</a>
       <a href="#philosophy">Philosophy</a>
       <a href="https://github.com/storypixel/chia">GitHub &nearr;</a>
     </div>
@@ -581,6 +583,73 @@
             <div class="d-skeleton" style="width: 240px; height: 16px;"></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <section id="grid">
+    <div class="container">
+      <div class="section-label">Grid System</div>
+      <h2 class="section-title">CSS Grid. No JavaScript. Just attributes.</h2>
+      <p class="section-desc">Auto-responsive by default. Fixed columns, named layouts, subgrid, container queries, and responsive breakpoints — all via data attributes.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 3rem;">
+
+        <!-- Auto-fill -->
+        <div>
+          <div class="demo-label">data-grid (auto-fill, min 200px)</div>
+          <div data-grid style="--grid-min: 200px; --grid-gap: 0.75rem;">
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">1</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">2</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">3</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">4</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">5</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">6</div>
+          </div>
+        </div>
+
+        <!-- Fixed 3-column -->
+        <div>
+          <div class="demo-label">data-grid="3" data-gap="lg"</div>
+          <div data-grid="3" data-gap="lg">
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; font-size: 0.85rem; color: #888;">Column 1</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; font-size: 0.85rem; color: #888;">Column 2</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; font-size: 0.85rem; color: #888;">Column 3</div>
+          </div>
+        </div>
+
+        <!-- Sidebar layout -->
+        <div>
+          <div class="demo-label">data-grid="sidebar"</div>
+          <div data-grid="sidebar" data-gap="md" style="--sidebar-width: 180px;">
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; font-size: 0.85rem; color: #888; min-height: 120px;">Sidebar</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; font-size: 0.85rem; color: #888; min-height: 120px;">Main content area</div>
+          </div>
+        </div>
+
+        <!-- Span demo -->
+        <div>
+          <div class="demo-label">data-grid="4" with span-2 and full</div>
+          <div data-grid="4" data-gap="sm">
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">1</div>
+            <div data-grid-item="span-2" style="background: rgba(45,212,160,0.08); border: 1px solid rgba(45,212,160,0.2); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: var(--accent);">span-2</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">4</div>
+            <div data-grid-item="full" style="background: rgba(45,212,160,0.05); border: 1px solid rgba(45,212,160,0.15); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: var(--accent);">full width</div>
+          </div>
+        </div>
+
+        <!-- Responsive breakpoints -->
+        <div>
+          <div class="demo-label">data-grid="1" data-sm="2" data-md="3" data-lg="4" (resize to see)</div>
+          <div data-grid="1" data-sm="2" data-md="3" data-lg="4" data-gap="sm">
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">A</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">B</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">C</div>
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">D</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
