@@ -1,46 +1,92 @@
 # Chia
 
-A plain CSS component library. No Tailwind, no build step, no dependencies.
+A plain CSS framework. No Tailwind, no build step, no JavaScript dependencies.
 
-One CSS file. Real selectors. Low specificity. Works everywhere.
+Real selectors. Low specificity. `data-slot` attributes for component styling. CSS custom properties for theming.
 
 ## Usage
 
+Import everything:
+
+```css
+@import 'chia/chia.css';
+```
+
+Or import modules individually:
+
+```css
+@import 'chia/src/tokens.css';
+@import 'chia/src/reset.css';
+@import 'chia/src/components.css';
+@import 'chia/src/utilities.css';
+```
+
+## Modules
+
+| File | Purpose |
+|------|---------|
+| `src/tokens.css` | Design tokens — typography, radius, colors, spacing, transitions |
+| `src/reset.css` | Modern CSS reset (Andy Bell-based) with sensible defaults |
+| `src/animations.css` | Keyframes for fade, slide, scale, collapse, ping, shimmer, spin |
+| `src/prose.css` | Rich text typography via `.prose` class |
+| `src/utilities.css` | Minimal layout utilities — flex, grid, gap, padding, margin, sizing |
+| `src/components.css` | UI components via `[data-slot]` selectors — button, badge, input, card, avatar, tabs, dialog, dropdown, etc. |
+
+## Component Architecture
+
+Components use `data-slot` attributes instead of classes:
+
 ```html
-<link rel="stylesheet" href="chia.css">
+<button data-slot="button" data-variant="default" data-size="default">
+  Click me
+</button>
+
+<div data-slot="card">
+  <div data-slot="card-header">Title</div>
+  <div data-slot="card-content">Body</div>
+</div>
+
+<span data-slot="badge" data-variant="secondary">New</span>
 ```
 
-Or import in your framework:
-
-```js
-import 'chia/chia.css'
-```
+Variants and sizes are `data-variant` and `data-size` attributes. This keeps specificity flat — every component rule is a single attribute selector.
 
 ## Components
 
-- **Layout**: `.sidebar`, `.sidebar-header`, `.sidebar-content`, `.sidebar-footer`, `.sidebar-rail`, `.sidebar-inset`
-- **Card**: `.card`, `.card-header`, `.card-content`, `.card-footer`
-- **Button**: `.btn`, `.btn-secondary`, `.btn-outline`, `.btn-ghost`, `.btn-destructive`, `.btn-sm`, `.btn-lg`, `.btn-icon`
-- **Badge**: `.badge`, `.badge-secondary`, `.badge-outline`, `.badge-destructive`
-- **Input**: `.input`, `.textarea`, `.select`
-- **Avatar**: `.avatar`, `.avatar-sm`, `.avatar-lg`
-- **Dialog**: `.dialog-overlay`, `.dialog`, `.dialog-header`, `.dialog-footer`
-- **Dropdown**: `.dropdown`, `.dropdown-item`, `.dropdown-separator`, `.dropdown-label`
-- **Tabs**: `.tabs`, `.tab-list`, `.tab`, `.tab-active`, `.tab-panel`
-- **Skeleton**: `.skeleton`
-- **Separator**: `.separator`, `.separator-vertical`
-- **Table**: `.table`
-- **Scroll Area**: `.scroll-area`
-- **Sheet**: `.sheet-overlay`, `.sheet`, `.sheet-left`
+- **Button**: `[data-slot="button"]` — variants: default, outline, secondary, ghost, destructive, link. Sizes: xs, sm, default, lg, icon, icon-sm, icon-lg.
+- **Badge**: `[data-slot="badge"]` — variants: default, secondary, destructive, outline, ghost, link.
+- **Input**: `[data-slot="input"]`
+- **Textarea**: `[data-slot="textarea"]`
+- **Floating Input**: `[data-slot="floating-input"]` + `[data-slot="floating-label"]`
+- **Card**: `[data-slot="card"]` — header, content, footer, title, description, action.
+- **Avatar**: `[data-slot="avatar"]` — image, fallback. Sizes: sm, default, lg.
+- **Checkbox**: `[data-slot="checkbox"]`
+- **Toggle**: `[data-slot="toggle"]`
+- **Label**: `[data-slot="label"]`
+- **Description**: `[data-slot="description"]`
 
-## Design Tokens
+## Theming
 
-All colors, spacing, and radii are CSS custom properties in `:root`. Override them to theme.
+Override CSS custom properties in `:root` or a theme layer:
+
+```css
+@layer theme {
+  :root {
+    --primary: #2563EB;
+    --primary-foreground: #FFFFFF;
+    --border: #E5E7EB;
+    /* ... */
+  }
+}
+```
+
+See `src/tokens.css` for the full list of available tokens.
 
 ## Philosophy
 
-- One class per element. No compound selectors.
+- One attribute selector per rule. No compound selectors.
 - No nesting. No `!important`.
-- Alphabetical properties.
-- CSS custom properties for theming.
-- Works without JavaScript.
+- CSS custom properties for every value.
+- `@layer base` for defaults, `@layer theme` for project overrides.
+- Works without JavaScript. Works with any framework.
+- Utilities exist for layout convenience, not as a design system.

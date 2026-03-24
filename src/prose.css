@@ -1,0 +1,90 @@
+/* ═══════════════════════════════════════════════════════════
+   BASE FRAMEWORK — Prose
+
+   Typography styles for rich text content (editor output,
+   markdown rendering, etc.). Apply via .prose class.
+   ═══════════════════════════════════════════════════════════ */
+
+.prose {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  max-width: none;
+
+  & > * + * {
+    margin-top: 0.75em;
+  }
+
+  & h1, & h2, & h3, & h4 {
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-tight);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  & h1 { font-size: var(--text-2xl); }
+  & h2 { font-size: var(--text-xl); }
+  & h3 { font-size: var(--text-lg); }
+  & h4 { font-size: var(--text-base); }
+
+  & p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  & a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  & strong {
+    font-weight: var(--font-semibold);
+  }
+
+  & ul, & ol {
+    padding-left: 1.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  & ul { list-style: disc; }
+  & ol { list-style: decimal; }
+
+  & li + li {
+    margin-top: 0.25em;
+  }
+
+  & blockquote {
+    border-left: 3px solid var(--border);
+    padding-left: 1em;
+    color: var(--muted-foreground);
+    font-style: italic;
+  }
+
+  & hr {
+    border: none;
+    border-top: 1px solid var(--divider);
+    margin: 1.5em 0;
+  }
+
+  & img {
+    border-radius: var(--radius-md);
+  }
+
+  & table {
+    width: 100%;
+    font-size: var(--text-sm);
+  }
+
+  & th {
+    font-weight: var(--font-semibold);
+    text-align: left;
+    padding: 0.5em;
+    border-bottom: 2px solid var(--border);
+  }
+
+  & td {
+    padding: 0.5em;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+}
