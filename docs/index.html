@@ -6,7 +6,12 @@
   <title>Chia — Plain CSS Framework</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../src/grid.css">
+  <link rel="stylesheet" href="src/tokens.css">
+  <link rel="stylesheet" href="src/reset.css">
+  <link rel="stylesheet" href="src/grid.css">
+  <link rel="stylesheet" href="src/utilities.css">
+  <link rel="stylesheet" href="src/components.css">
+  <link rel="stylesheet" href="src/animations.css">
   <style>
     :root {
       --bg: #1a1a1a;
@@ -526,12 +531,12 @@
         <div class="demo-row">
           <div class="demo-label">Button</div>
           <div class="demo-content">
-            <button class="d-btn d-btn-primary">Primary</button>
-            <button class="d-btn d-btn-secondary">Secondary</button>
-            <button class="d-btn d-btn-outline">Outline</button>
-            <button class="d-btn d-btn-ghost">Ghost</button>
-            <button class="d-btn d-btn-destructive">Destructive</button>
-            <button class="d-btn d-btn-primary d-btn-sm">Small</button>
+            <button data-slot="button" data-variant="default" data-size="default">Primary</button>
+            <button data-slot="button" data-variant="secondary" data-size="default">Secondary</button>
+            <button data-slot="button" data-variant="outline" data-size="default">Outline</button>
+            <button data-slot="button" data-variant="ghost" data-size="default">Ghost</button>
+            <button data-slot="button" data-variant="destructive" data-size="default">Destructive</button>
+            <button data-slot="button" data-variant="default" data-size="sm">Small</button>
           </div>
         </div>
 
@@ -539,10 +544,10 @@
         <div class="demo-row">
           <div class="demo-label">Badge</div>
           <div class="demo-content">
-            <span class="d-badge d-badge-default">Default</span>
-            <span class="d-badge d-badge-secondary">Secondary</span>
-            <span class="d-badge d-badge-outline">Outline</span>
-            <span class="d-badge d-badge-destructive">Destructive</span>
+            <span data-slot="badge" data-variant="default">Default</span>
+            <span data-slot="badge" data-variant="secondary">Secondary</span>
+            <span data-slot="badge" data-variant="outline">Outline</span>
+            <span data-slot="badge" data-variant="destructive">Destructive</span>
           </div>
         </div>
 
@@ -550,7 +555,18 @@
         <div class="demo-row">
           <div class="demo-label">Input</div>
           <div class="demo-content">
-            <input class="d-input" type="text" placeholder="Enter something...">
+            <input data-slot="input" type="text" placeholder="Enter something...">
+          </div>
+        </div>
+
+        <!-- Floating Input -->
+        <div class="demo-row">
+          <div class="demo-label">Floating Input</div>
+          <div class="demo-content">
+            <div data-slot="floating-field">
+              <input data-slot="floating-input" id="demo-name" placeholder=" " />
+              <label data-slot="floating-label" for="demo-name">Your name</label>
+            </div>
           </div>
         </div>
 
@@ -558,9 +574,12 @@
         <div class="demo-row">
           <div class="demo-label">Card</div>
           <div class="demo-content">
-            <div class="d-card">
-              <div class="d-card-title">Card Title</div>
-              <div class="d-card-desc">A simple card with rounded corners, subtle border, and soft shadow.</div>
+            <div data-slot="card" style="max-width: 320px;">
+              <div data-slot="card-header">
+                <div data-slot="card-title">Card Title</div>
+                <div data-slot="card-description">Rounded corners, subtle border, and soft shadow.</div>
+              </div>
+              <div data-slot="card-content">Content goes here.</div>
             </div>
           </div>
         </div>
@@ -569,8 +588,34 @@
         <div class="demo-row">
           <div class="demo-label">Avatar</div>
           <div class="demo-content">
-            <div class="d-avatar">SW</div>
-            <div class="d-avatar d-avatar-lg">SW</div>
+            <div data-slot="avatar">
+              <span data-slot="avatar-fallback">SW</span>
+            </div>
+            <div data-slot="avatar" data-size="lg">
+              <span data-slot="avatar-fallback">SW</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox -->
+        <div class="demo-row">
+          <div class="demo-label">Checkbox</div>
+          <div class="demo-content">
+            <button data-slot="checkbox" role="checkbox" aria-checked="false" onclick="this.toggleAttribute('data-checked'); this.setAttribute('aria-checked', this.hasAttribute('data-checked'))">
+              <span data-slot="checkbox-indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </span>
+            </button>
+            <span style="font-size: 14px; color: #45474D;">Click to toggle</span>
+          </div>
+        </div>
+
+        <!-- Toggle -->
+        <div class="demo-row">
+          <div class="demo-label">Toggle</div>
+          <div class="demo-content">
+            <button data-slot="toggle" data-size="default" aria-pressed="false" onclick="let p = this.getAttribute('aria-pressed')==='true'; this.setAttribute('aria-pressed', !p); if(!p) this.setAttribute('data-state','on'); else this.removeAttribute('data-state');">Bold</button>
+            <button data-slot="toggle" data-variant="outline" data-size="default" aria-pressed="false" onclick="let p = this.getAttribute('aria-pressed')==='true'; this.setAttribute('aria-pressed', !p); if(!p) this.setAttribute('data-state','on'); else this.removeAttribute('data-state');">Italic</button>
           </div>
         </div>
 
@@ -578,9 +623,9 @@
         <div class="demo-row">
           <div class="demo-label">Skeleton</div>
           <div class="demo-content" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
-            <div class="d-skeleton" style="width: 200px; height: 16px;"></div>
-            <div class="d-skeleton" style="width: 160px; height: 16px;"></div>
-            <div class="d-skeleton" style="width: 240px; height: 16px;"></div>
+            <div data-slot="skeleton" style="width: 200px; height: 16px;"></div>
+            <div data-slot="skeleton" style="width: 160px; height: 16px;"></div>
+            <div data-slot="skeleton" style="width: 240px; height: 16px;"></div>
           </div>
         </div>
       </div>
