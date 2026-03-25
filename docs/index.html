@@ -12,448 +12,7 @@
   <link rel="stylesheet" href="src/utilities.css">
   <link rel="stylesheet" href="src/components.css">
   <link rel="stylesheet" href="src/animations.css">
-  <style>
-    :root {
-      --bg: #0e1f18;
-      --text: #ffffff;
-      --text-secondary: #888888;
-      --border: rgba(255,255,255,0.1);
-      --accent: #E1F371;
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    * { margin: 0; box-sizing: border-box; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-weight: 400;
-      font-size: 15px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; }
-
-    ::selection {
-      background: var(--accent);
-      color: var(--bg);
-    }
-
-    /* ── Layout ──────────────────────────────── */
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-    }
-
-    @media (max-width: 768px) {
-      .container { padding: 0 1.5rem; }
-    }
-
-    /* ── Nav ─────────────────────────────────── */
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.5rem 2.5rem;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: var(--bg);
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .nav-logo {
-      height: 120px;
-    }
-
-    .nav-title {
-      font-size: 0.9rem;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-    }
-
-    .nav-version {
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a:hover { color: var(--accent); }
-
-    @media (max-width: 768px) {
-      nav { padding: 1.5rem; }
-      .nav-links { display: none; }
-    }
-
-    /* ── Hero ────────────────────────────────── */
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-top: 6rem;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      color: var(--accent);
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 400;
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-      max-width: 750px;
-    }
-
-    .hero p {
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-      max-width: 520px;
-      margin-top: 1.5rem;
-      line-height: 1.6;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2.5rem;
-    }
-
-    .hero-actions code {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
-      font-family: 'SF Mono', monospace;
-      font-size: 0.85rem;
-      color: var(--accent);
-    }
-
-    /* ── Sections ────────────────────────────── */
-
-    section {
-      padding: 8rem 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-label {
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 3rem;
-    }
-
-    .section-title {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-size: 2.25rem;
-      font-style: italic;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-
-    .section-desc {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      max-width: 520px;
-      margin-bottom: 3rem;
-    }
-
-    /* ── Module Grid ─────────────────────────── */
-
-    .module-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .module-card {
-      background: rgba(14,31,24,0.9);
-      padding: 1.5rem;
-    }
-
-    .module-card h3 {
-      font-size: 0.95rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
-    .module-card p {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    .module-card code {
-      color: var(--accent);
-      font-family: 'SF Mono', monospace;
-      font-size: 0.8rem;
-    }
-
-    /* ── Component Demos ─────────────────────── */
-
-    .demo-row {
-      padding: 2.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .demo-row:last-child { border-bottom: none; }
-
-    .demo-label {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .demo-content {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    /* ── Live component styles (light theme for demos) ── */
-
-    .demo-surface {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 2rem;
-      color: #121317;
-    }
-
-    .demo-surface .demo-label {
-      color: #6E7681;
-    }
-
-    /* Buttons */
-    .d-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 32px;
-      padding: 0 12px;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 500;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      gap: 6px;
-      white-space: nowrap;
-    }
-
-    .d-btn-primary {
-      background: #121317;
-      color: #fff;
-    }
-    .d-btn-primary:hover { background: #2F3034; }
-
-    .d-btn-secondary {
-      background: #F0F1F5;
-      color: #121317;
-    }
-    .d-btn-secondary:hover { background: #E6EAF0; }
-
-    .d-btn-outline {
-      background: transparent;
-      border-color: #E1E6EC;
-      color: #121317;
-    }
-    .d-btn-outline:hover { background: #F8F9FC; }
-
-    .d-btn-ghost {
-      background: transparent;
-      color: #6E7681;
-    }
-    .d-btn-ghost:hover { background: #F0F1F5; color: #121317; }
-
-    .d-btn-destructive {
-      background: rgba(220,38,38,0.1);
-      color: #DC2626;
-    }
-    .d-btn-destructive:hover { background: rgba(220,38,38,0.2); }
-
-    .d-btn-sm { height: 28px; padding: 0 10px; font-size: 13px; }
-
-    /* Badges */
-    .d-badge {
-      display: inline-flex;
-      align-items: center;
-      height: 20px;
-      padding: 0 8px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 500;
-      white-space: nowrap;
-      border: 1px solid transparent;
-    }
-
-    .d-badge-default { background: #121317; color: #fff; }
-    .d-badge-secondary { background: #F0F1F5; color: #45474D; }
-    .d-badge-outline { background: transparent; border-color: #E1E6EC; color: #6E7681; }
-    .d-badge-destructive { background: rgba(220,38,38,0.1); color: #DC2626; }
-
-    /* Inputs */
-    .d-input {
-      height: 40px;
-      width: 280px;
-      border: 1px solid #E1E6EC;
-      border-radius: 8px;
-      padding: 0 12px;
-      font-family: inherit;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.15s ease;
-    }
-    .d-input:focus { border-color: #121317; }
-    .d-input::placeholder { color: #B2BBC5; }
-
-    /* Cards */
-    .d-card {
-      background: #fff;
-      border: 1px solid rgba(225,230,236,0.4);
-      border-radius: 24px;
-      padding: 20px 16px;
-      box-shadow: 0 2px 12px -4px rgba(0,0,0,0.06);
-      max-width: 320px;
-    }
-
-    .d-card-title {
-      font-size: 15px;
-      font-weight: 500;
-      margin-bottom: 4px;
-    }
-
-    .d-card-desc {
-      font-size: 14px;
-      color: #6E7681;
-    }
-
-    /* Avatar */
-    .d-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 9999px;
-      background: #E6EAF0;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 600;
-      color: #6E7681;
-      flex-shrink: 0;
-    }
-
-    .d-avatar-lg { width: 48px; height: 48px; font-size: 16px; }
-
-    /* Skeleton */
-    .d-skeleton {
-      background: #E6EAF0;
-      border-radius: 8px;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    /* ── Code Block ──────────────────────────── */
-
-    .code-block {
-      background: rgba(225,243,113,0.03);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem 1.5rem;
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-size: 0.8rem;
-      line-height: 1.7;
-      overflow-x: auto;
-      color: var(--text-secondary);
-    }
-
-    .code-block .hl { color: var(--accent); }
-    .code-block .cm { color: var(--text-secondary); }
-
-    /* ── Principles ──────────────────────────── */
-
-    .principles {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 2.5rem;
-    }
-
-    .principle h3 {
-      font-size: 0.95rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
-    .principle p {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      line-height: 1.6;
-    }
-
-    /* ── Footer ──────────────────────────────── */
-
-    footer {
-      padding: 4rem 0;
-      border-top: 1px solid var(--border);
-    }
-
-    footer p {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-    }
-
-    footer a {
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    footer a:hover { text-decoration: underline; }
-  </style>
+  <link rel="stylesheet" href="site.css">
 </head>
 <body>
 
@@ -475,7 +34,7 @@
     <div class="hero">
       <span class="hero-badge">Plain CSS Framework</span>
       <h1>Real CSS.<br>No build step.<br>No dependencies.</h1>
-      <p>A component library that uses attribute selectors and CSS custom properties. One file. Readable styles. Works with any framework or none at all.</p>
+      <p class="hero-desc">A component library that uses attribute selectors and CSS custom properties. One file. Readable styles. Works with any framework or none at all.</p>
       <div class="hero-actions">
         <code>@import 'chia/chia.css'</code>
       </div>
@@ -486,7 +45,7 @@
   <section id="modules">
     <div class="container">
       <div class="section-label">Modules</div>
-      <h2 class="section-title">Six files. Import what you need.</h2>
+      <h2 class="section-title">Seven files. Import what you need.</h2>
       <p class="section-desc">Each module is independent. Use them together or pull in only what you need.</p>
 
       <div class="module-grid">
@@ -508,7 +67,7 @@
         </div>
         <div class="module-card">
           <h3>grid.css</h3>
-          <p>CSS Grid system with <code>data-grid</code> attributes. Auto-fill, fixed columns, named layouts, subgrid, container queries, and responsive breakpoints via <code>data-sm</code> / <code>data-md</code> / <code>data-lg</code>.</p>
+          <p>CSS Grid system with <code>data-grid</code> attributes. Auto-fill, fixed columns, named layouts, subgrid, and responsive breakpoints.</p>
         </div>
         <div class="module-card">
           <h3>animations.css</h3>
@@ -530,7 +89,6 @@
       <p class="section-desc">Components use <code>data-slot</code> for identity and <code>data-variant</code> / <code>data-size</code> for variants. Flat specificity. Easy overrides.</p>
 
       <div class="demo-surface">
-        <!-- Buttons -->
         <div class="demo-row">
           <div class="demo-label">Button</div>
           <div class="demo-content">
@@ -543,7 +101,6 @@
           </div>
         </div>
 
-        <!-- Badges -->
         <div class="demo-row">
           <div class="demo-label">Badge</div>
           <div class="demo-content">
@@ -554,7 +111,6 @@
           </div>
         </div>
 
-        <!-- Input -->
         <div class="demo-row">
           <div class="demo-label">Input</div>
           <div class="demo-content">
@@ -562,7 +118,6 @@
           </div>
         </div>
 
-        <!-- Floating Input -->
         <div class="demo-row">
           <div class="demo-label">Floating Input</div>
           <div class="demo-content">
@@ -573,11 +128,10 @@
           </div>
         </div>
 
-        <!-- Card -->
         <div class="demo-row">
           <div class="demo-label">Card</div>
           <div class="demo-content">
-            <div data-slot="card" style="max-width: 320px;">
+            <div data-slot="card" class="demo-card-constrained">
               <div data-slot="card-header">
                 <div data-slot="card-title">Card Title</div>
                 <div data-slot="card-description">Rounded corners, subtle border, and soft shadow.</div>
@@ -587,7 +141,6 @@
           </div>
         </div>
 
-        <!-- Avatar -->
         <div class="demo-row">
           <div class="demo-label">Avatar</div>
           <div class="demo-content">
@@ -600,7 +153,6 @@
           </div>
         </div>
 
-        <!-- Checkbox -->
         <div class="demo-row">
           <div class="demo-label">Checkbox</div>
           <div class="demo-content">
@@ -609,11 +161,10 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
               </span>
             </button>
-            <span style="font-size: 14px; color: #45474D;">Click to toggle</span>
+            <span class="demo-checkbox-label">Click to toggle</span>
           </div>
         </div>
 
-        <!-- Toggle -->
         <div class="demo-row">
           <div class="demo-label">Toggle</div>
           <div class="demo-content">
@@ -622,13 +173,12 @@
           </div>
         </div>
 
-        <!-- Skeleton -->
         <div class="demo-row">
           <div class="demo-label">Skeleton</div>
-          <div class="demo-content" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
-            <div data-slot="skeleton" style="width: 200px; height: 16px;"></div>
-            <div data-slot="skeleton" style="width: 160px; height: 16px;"></div>
-            <div data-slot="skeleton" style="width: 240px; height: 16px;"></div>
+          <div class="demo-content-vertical">
+            <div data-slot="skeleton" class="skel-wide"></div>
+            <div data-slot="skeleton" class="skel-med"></div>
+            <div data-slot="skeleton" class="skel-narrow"></div>
           </div>
         </div>
       </div>
@@ -642,62 +192,55 @@
       <h2 class="section-title">CSS Grid. No JavaScript. Just attributes.</h2>
       <p class="section-desc">Auto-responsive by default. Fixed columns, named layouts, subgrid, container queries, and responsive breakpoints — all via data attributes.</p>
 
-      <div style="display: flex; flex-direction: column; gap: 3rem;">
-
-        <!-- Auto-fill -->
+      <div class="grid-demos">
         <div>
           <div class="demo-label">data-grid (auto-fill, min 200px)</div>
-          <div data-grid style="--grid-min: 200px; --grid-gap: 0.75rem;">
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">1</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">2</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">3</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">4</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">5</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; font-size: 0.85rem; color: #888;">6</div>
+          <div data-grid data-gap="sm">
+            <div class="grid-cell">1</div>
+            <div class="grid-cell">2</div>
+            <div class="grid-cell">3</div>
+            <div class="grid-cell">4</div>
+            <div class="grid-cell">5</div>
+            <div class="grid-cell">6</div>
           </div>
         </div>
 
-        <!-- Fixed 3-column -->
         <div>
           <div class="demo-label">data-grid="3" data-gap="lg"</div>
           <div data-grid="3" data-gap="lg">
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; font-size: 0.85rem; color: #888;">Column 1</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; font-size: 0.85rem; color: #888;">Column 2</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; font-size: 0.85rem; color: #888;">Column 3</div>
+            <div class="grid-cell">Column 1</div>
+            <div class="grid-cell">Column 2</div>
+            <div class="grid-cell">Column 3</div>
           </div>
         </div>
 
-        <!-- Sidebar layout -->
         <div>
           <div class="demo-label">data-grid="sidebar"</div>
-          <div data-grid="sidebar" data-gap="md" style="--sidebar-width: 180px;">
-            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; font-size: 0.85rem; color: #888; min-height: 120px;">Sidebar</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; font-size: 0.85rem; color: #888; min-height: 120px;">Main content area</div>
+          <div data-grid="sidebar" data-gap="md">
+            <div class="grid-cell grid-cell-tall">Sidebar</div>
+            <div class="grid-cell grid-cell-tall">Main content area</div>
           </div>
         </div>
 
-        <!-- Span demo -->
         <div>
           <div class="demo-label">data-grid="4" with span-2 and full</div>
           <div data-grid="4" data-gap="sm">
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">1</div>
-            <div data-grid-item="span-2" style="background: rgba(45,212,160,0.08); border: 1px solid rgba(45,212,160,0.2); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: var(--accent);">span-2</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">4</div>
-            <div data-grid-item="full" style="background: rgba(45,212,160,0.05); border: 1px solid rgba(45,212,160,0.15); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: var(--accent);">full width</div>
+            <div class="grid-cell">1</div>
+            <div class="grid-cell grid-cell-accent" data-grid-item="span-2">span-2</div>
+            <div class="grid-cell">4</div>
+            <div class="grid-cell grid-cell-accent-subtle" data-grid-item="full">full width</div>
           </div>
         </div>
 
-        <!-- Responsive breakpoints -->
         <div>
           <div class="demo-label">data-grid="1" data-sm="2" data-md="3" data-lg="4" (resize to see)</div>
           <div data-grid="1" data-sm="2" data-md="3" data-lg="4" data-gap="sm">
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">A</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">B</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">C</div>
-            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.85rem; color: #888;">D</div>
+            <div class="grid-cell">A</div>
+            <div class="grid-cell">B</div>
+            <div class="grid-cell">C</div>
+            <div class="grid-cell">D</div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -722,26 +265,8 @@
   &lt;div <span class="hl">data-slot="card-content"</span>&gt;Body&lt;/div&gt;
 &lt;/div&gt;
 
-<span class="cm">&lt;!-- Badge --&gt;</span>
-&lt;span <span class="hl">data-slot="badge"</span>
-      <span class="hl">data-variant="secondary"</span>&gt;New&lt;/span&gt;
-
-<span class="cm">&lt;!-- Input --&gt;</span>
-&lt;input <span class="hl">data-slot="input"</span> placeholder="Search..." /&gt;
-
 <span class="cm">&lt;!-- Grid --&gt;</span>
-&lt;div <span class="hl">data-grid</span>&gt;              <span class="cm">&lt;!-- auto-fill responsive --&gt;</span>
-  &lt;div&gt;Card 1&lt;/div&gt;
-  &lt;div&gt;Card 2&lt;/div&gt;
-  &lt;div&gt;Card 3&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div <span class="hl">data-grid="sidebar"</span>&gt;     <span class="cm">&lt;!-- sidebar + content --&gt;</span>
-  &lt;nav&gt;...&lt;/nav&gt;
-  &lt;main&gt;...&lt;/main&gt;
-&lt;/div&gt;
-
-&lt;div <span class="hl">data-grid="3"</span> <span class="hl">data-gap="lg"</span>&gt;  <span class="cm">&lt;!-- fixed 3-col --&gt;</span>
+&lt;div <span class="hl">data-grid="3"</span> <span class="hl">data-gap="lg"</span>&gt;
   &lt;div&gt;...&lt;/div&gt;
   &lt;div <span class="hl">data-grid-item="span-2"</span>&gt;...&lt;/div&gt;
 &lt;/div&gt;</code></pre>
@@ -790,43 +315,26 @@
       <h2 class="section-title">Inspirations</h2>
       <p class="section-desc">Chia exists because these people showed that CSS, used properly, doesn't need a framework on top of it.</p>
 
-      <div style="display: flex; flex-direction: column; gap: 3rem; margin-top: 2rem;">
-
-        <blockquote style="border-left: 2px solid rgba(255,255,255,0.15); padding-left: 1.5rem; max-width: 600px;">
-          <p style="font-family: 'Instrument Serif', Georgia, serif; font-size: 1.5rem; font-style: italic; line-height: 1.3; margin-bottom: 0.75rem;">"If you find yourself wrestling with CSS layout, it's likely you're making decisions for browsers they should be making themselves."</p>
-          <cite style="font-size: 0.85rem; color: #888; font-style: normal;">
-            <a href="https://every-layout.dev/blog/algorithmic-design/" style="color: #fff;">Heydon Pickering</a> &mdash; Every Layout
-          </cite>
+      <div class="quotes">
+        <blockquote class="quote">
+          <p>"If you find yourself wrestling with CSS layout, it's likely you're making decisions for browsers they should be making themselves."</p>
+          <cite><a href="https://every-layout.dev/blog/algorithmic-design/">Heydon Pickering</a> &mdash; Every Layout</cite>
         </blockquote>
 
-        <blockquote style="border-left: 2px solid rgba(255,255,255,0.15); padding-left: 1.5rem; max-width: 600px;">
-          <p style="font-family: 'Instrument Serif', Georgia, serif; font-size: 1.5rem; font-style: italic; line-height: 1.3; margin-bottom: 0.75rem;">"With CUBE CSS, we embrace the cascade and inheritance to style as much as possible at a high level."</p>
-          <cite style="font-size: 0.85rem; color: #888; font-style: normal;">
-            <a href="https://piccalil.li/blog/cube-css/" style="color: #fff;">Andy Bell</a> &mdash; CUBE CSS / Piccalilli
-          </cite>
+        <blockquote class="quote">
+          <p>"With CUBE CSS, we embrace the cascade and inheritance to style as much as possible at a high level."</p>
+          <cite><a href="https://piccalil.li/blog/cube-css/">Andy Bell</a> &mdash; CUBE CSS / Piccalilli</cite>
         </blockquote>
 
-        <blockquote style="border-left: 2px solid rgba(255,255,255,0.15); padding-left: 1.5rem; max-width: 600px;">
-          <p style="font-family: 'Instrument Serif', Georgia, serif; font-size: 1.5rem; font-style: italic; line-height: 1.3; margin-bottom: 0.75rem;">"He delivers clean, modular markup that is easy to implement and to improvise with when needed, and with all states and behavior accounted for."</p>
-          <cite style="font-size: 0.85rem; color: #888; font-style: normal;">
-            On <a href="http://jamesmathias.com" style="color: #fff;">James Mathias</a> &mdash; CSS practitioner, Nashville
-          </cite>
+        <blockquote class="quote">
+          <p>"CSS tries to avoid data loss. That's why the 'CSS is awesome' text overflows the box."</p>
+          <cite><a href="https://rachelandrew.co.uk">Rachel Andrew</a> &mdash; CSS Working Group</cite>
         </blockquote>
 
-        <blockquote style="border-left: 2px solid rgba(255,255,255,0.15); padding-left: 1.5rem; max-width: 600px;">
-          <p style="font-family: 'Instrument Serif', Georgia, serif; font-size: 1.5rem; font-style: italic; line-height: 1.3; margin-bottom: 0.75rem;">"CSS tries to avoid data loss. That's why the 'CSS is awesome' text overflows the box."</p>
-          <cite style="font-size: 0.85rem; color: #888; font-style: normal;">
-            <a href="https://rachelandrew.co.uk" style="color: #fff;">Rachel Andrew</a> &mdash; CSS Working Group
-          </cite>
+        <blockquote class="quote">
+          <p>"It's time to play."</p>
+          <cite><a href="https://labs.jensimmons.com">Jen Simmons</a> &mdash; Intrinsic Web Design</cite>
         </blockquote>
-
-        <blockquote style="border-left: 2px solid rgba(255,255,255,0.15); padding-left: 1.5rem; max-width: 600px;">
-          <p style="font-family: 'Instrument Serif', Georgia, serif; font-size: 1.5rem; font-style: italic; line-height: 1.3; margin-bottom: 0.75rem;">"It's time to play."</p>
-          <cite style="font-size: 0.85rem; color: #888; font-style: normal;">
-            <a href="https://labs.jensimmons.com" style="color: #fff;">Jen Simmons</a> &mdash; Intrinsic Web Design
-          </cite>
-        </blockquote>
-
       </div>
     </div>
   </section>
