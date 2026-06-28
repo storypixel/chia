@@ -3,11 +3,15 @@
    ═══════════════════════════════════════════════════════════ */
 
 :root {
-  --bg: #2a4a38;
-  --text: #ffffff;
-  --text-secondary: #888888;
-  --border: rgba(255,255,255,0.1);
-  --accent: #E1F371;
+  /* Pillion poster palette: red field, cyan ink, cream paper */
+  --bg: #E5391A;
+  --bg-deep: #B6280F;
+  --paper: #F6EFE2;
+  --ink: #14100E;
+  --text: #34D2DB;
+  --text-secondary: rgba(246,239,226,0.72);
+  --border: rgba(246,239,226,0.18);
+  --accent: #34D2DB;
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --serif: 'Instrument Serif', Georgia, serif;
   --mono: 'SF Mono', 'Fira Code', monospace;
@@ -68,7 +72,7 @@ nav {
 }
 
 .nav-links a {
-  color: #ffffff;
+  color: var(--text);
   font-size: 0.9rem;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -127,7 +131,7 @@ nav {
 }
 
 .hero-actions code {
-  background: rgba(255,255,255,0.05);
+  background: rgba(246,239,226,0.08);
   border: 1px solid var(--border);
   border-radius: 6px;
   color: var(--accent);
@@ -182,7 +186,7 @@ section {
 }
 
 .module-card {
-  background: rgba(42,74,56,0.8);
+  background: rgba(182,40,15,0.55);
   padding: 1.5rem;
 }
 
@@ -239,14 +243,14 @@ section {
 }
 
 .demo-surface {
-  background: #ffffff;
+  background: var(--paper);
   border-radius: 12px;
-  color: #121317;
+  color: var(--ink);
   padding: 2rem;
 }
 
 .demo-surface .demo-label {
-  color: #6E7681;
+  color: rgba(20,16,14,0.6);
 }
 
 .demo-card-constrained {
@@ -254,7 +258,7 @@ section {
 }
 
 .demo-checkbox-label {
-  color: #45474D;
+  color: rgba(20,16,14,0.72);
   font-size: 14px;
 }
 
@@ -268,10 +272,10 @@ section {
 }
 
 .grid-cell {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(246,239,226,0.06);
+  border: 1px solid rgba(246,239,226,0.14);
   border-radius: 8px;
-  color: #888;
+  color: var(--text-secondary);
   font-size: 0.85rem;
   padding: 1.25rem;
   text-align: center;
@@ -283,14 +287,14 @@ section {
 }
 
 .grid-cell-accent {
-  background: rgba(225,243,113,0.06);
-  border-color: rgba(225,243,113,0.2);
+  background: rgba(52,210,219,0.08);
+  border-color: rgba(52,210,219,0.28);
   color: var(--accent);
 }
 
 .grid-cell-accent-subtle {
-  background: rgba(225,243,113,0.04);
-  border-color: rgba(225,243,113,0.15);
+  background: rgba(52,210,219,0.05);
+  border-color: rgba(52,210,219,0.2);
   color: var(--accent);
 }
 
@@ -298,7 +302,7 @@ section {
 /* ── Code Block ──────────────────────────────── */
 
 .code-block {
-  background: rgba(225,243,113,0.03);
+  background: rgba(52,210,219,0.05);
   border: 1px solid var(--border);
   border-radius: 8px;
   color: var(--text-secondary);
@@ -349,7 +353,7 @@ section {
 }
 
 .quote {
-  border-left: 2px solid rgba(255,255,255,0.15);
+  border-left: 2px solid rgba(246,239,226,0.25);
   max-width: 600px;
   padding-left: 1.5rem;
 }
@@ -363,13 +367,13 @@ section {
 }
 
 .quote cite {
-  color: #888;
+  color: var(--text-secondary);
   font-size: 0.85rem;
   font-style: normal;
 }
 
 .quote cite a {
-  color: #fff;
+  color: var(--text);
 }
 
 
