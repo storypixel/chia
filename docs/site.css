@@ -14,6 +14,7 @@
   --accent: #34D2DB;
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --serif: 'Instrument Serif', Georgia, serif;
+  --display: 'Fraunces', 'Instrument Serif', Georgia, serif;
   --mono: 'SF Mono', 'Fira Code', monospace;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -108,12 +109,14 @@ nav {
 }
 
 .hero h1 {
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: clamp(3rem, 6vw, 5.5rem);
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1.02;
-  max-width: 750px;
+  font-optical-sizing: auto;
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  max-width: 800px;
 }
 
 .hero-desc {
@@ -157,10 +160,11 @@ section {
 }
 
 .section-title {
-  font-family: var(--serif);
-  font-size: 2.25rem;
-  font-style: italic;
-  font-weight: 400;
+  font-family: var(--display);
+  font-optical-sizing: auto;
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+  font-size: 2.5rem;
+  font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
 }
